@@ -9,16 +9,22 @@ package ch.bbw.cardgame;
 public class City {
     private String imageUrl;
     private String tradeName;
-    private String model;
-    private double prize;
+    private double inhabitant;
+    private double area;
+    private int highestBuilding;
+    private int populationDensity;
 
-    public City(String imageUrl, String tradeName, String model, double prize) {
+    // Konstruktor
+    public City(String imageUrl, String tradeName, double inhabitant, double area, int highestBuilding, int populationDensity) {
         this.imageUrl = imageUrl;
         this.tradeName = tradeName;
-        this.model = model;
-        this.prize = prize;
+        this.inhabitant = inhabitant;
+        this.area = area;
+        this.highestBuilding = highestBuilding;
+        this.populationDensity = populationDensity;
     }
 
+    // Getter und Setter Methoden
     public String getImageUrl() {
         return imageUrl;
     }
@@ -35,19 +41,35 @@ public class City {
         this.tradeName = tradeName;
     }
 
-    public String getModel() {
-        return model;
+    public double getInhabitant() {
+        return inhabitant;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setInhabitant(int inhabitant) {
+        this.inhabitant = inhabitant;
     }
 
-    public double getPrize() {
-        return prize;
+    public double getArea() {
+        return area;
     }
 
-    public void setPrize(double prize) {
-        this.prize = prize;
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public int getHighestBuilding() {
+        return highestBuilding;
+    }
+
+    public void setHighestBuilding(int highestBuilding) {
+        this.highestBuilding = highestBuilding;
+    }
+
+    public int getPopulationDensity() {
+        return populationDensity;
+    }
+
+    public void setPopulationDensity(int populationDensity) {
+        this.populationDensity = populationDensity;
     }
 }

@@ -30,23 +30,27 @@ public class ViewController {
         rightCityList.clear();
 
         //Aufwendiger Style
-        City City1 = new City("images/city_img.jpg", "Audi", "Flaschback 300", 50000.00 );
-        leftCityList.add(City1);
-        City City2 = new City("images/city_img.jpg", "Opel", "Manta SE", 20000.00 );
-        leftCityList.add(City2);
-        City City3 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
-        leftCityList.add(City3);
-        City City4 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
-        leftCityList.add(City4);
-        City City5 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
-        leftCityList.add(City5);
+        City Paris = new City("images/city_img.jpg", "Paris", 2.1, 105.4, 330, 20238);
+        leftCityList.add(Paris);
+        City London = new City("images/city_img.jpg", "London", 8.87, 1570, 310, 5510);
+        leftCityList.add(London);
+        City NewYork = new City("images/city_img.jpg", "New York", 8.26, 778.2, 541, 10356);
+        leftCityList.add(NewYork);
+        City LosAngeles = new City("images/city_img.jpg", "Los Angeles", 9.66, 1300, 335, 7430);
+        leftCityList.add(LosAngeles);
+        City Zurich = new City("images/city_img.jpg", "Zürich", 0.4, 87.9, 126, 4655);
+        leftCityList.add(Zurich);
 
-        //Objekt direkt erstellen
-        rightCityList.add(new City("images/city_img.jpg", "Fiat", "500", 15000.00 ));
-        rightCityList.add(new City("images/city_img.jpg", "Alfa Romeo", "Guilietta", 30000.00 ));
-        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
-        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
-        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
+        City Tokyo = new City("images/city_img.jpg", "Tokyo", 14.2, 627.5, 634, 22613);
+        rightCityList.add(Tokyo);
+        City Sydney = new City("images/city_img.jpg", "Sydney", 5.45, 12140, 309, 448);
+        rightCityList.add(Sydney);
+        City RioDeJaneiro = new City("images/city_img.jpg", "Rio de Janeiro", 6.21, 1206, 294, 4928);
+        rightCityList.add(RioDeJaneiro);
+        City Berlin = new City("images/city_img.jpg", "Berlin", 3.88, 891.1, 125, 4244);
+        rightCityList.add(Berlin);
+        City Barcelona = new City("images/city_img.jpg", "Barcelona", 1.62, 101.3, 154, 15992);
+        rightCityList.add(Barcelona);
     }
 
     @GetMapping("/")
@@ -59,8 +63,8 @@ public class ViewController {
 
     @GetMapping("/cardGameView")
     public String showView(Model model) {
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
@@ -73,8 +77,8 @@ public class ViewController {
         }else{
             leftCity = leftCityList.get(0);
         }
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
@@ -83,7 +87,7 @@ public class ViewController {
     @PostMapping(value = "/cardGameView", params = {"moveButton=moveToLeft"})
     public String moveCardToLeft(Model model) {
         if(rightCityList.isEmpty()){
-            //do nothing
+
         }else{
             //Verliererkarte hinzufügen
             leftCityList.add(rightCityList.remove(0));
@@ -92,8 +96,8 @@ public class ViewController {
         }
         leftCity = null;
         rightCity = null;
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
@@ -106,8 +110,8 @@ public class ViewController {
         }else{
             rightCity = rightCityList.get(0);
         }
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
@@ -125,8 +129,8 @@ public class ViewController {
         }
         leftCity = null;
         rightCity = null;
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
@@ -137,8 +141,8 @@ public class ViewController {
         setup();
         leftCity = null;
         rightCity = null;
-        model.addAttribute("leftCity", leftCity);
-        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("leftCar", leftCity);
+        model.addAttribute("rightCar", rightCity);
         model.addAttribute("numberLeft", leftCityList.size());
         model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
