@@ -36,10 +36,16 @@ public class ViewController {
         leftCityList.add(City2);
         City City3 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
         leftCityList.add(City3);
+        City City4 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
+        leftCityList.add(City4);
+        City City5 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
+        leftCityList.add(City5);
 
         //Objekt direkt erstellen
         rightCityList.add(new City("images/city_img.jpg", "Fiat", "500", 15000.00 ));
         rightCityList.add(new City("images/city_img.jpg", "Alfa Romeo", "Guilietta", 30000.00 ));
+        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
+        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
         rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
     }
 
