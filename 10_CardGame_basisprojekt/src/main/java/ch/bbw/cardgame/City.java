@@ -1,8 +1,8 @@
 package ch.bbw.cardgame;
 
 /**
- * Car
- *    Fachklasse für ein Auto
+ * City
+ * Fachklasse für ein Auto
  * @author Peter Rutschmann
  * @date 26.08.2021
  */
@@ -12,7 +12,7 @@ public class City {
     private String model;
     private double prize;
 
-    public Car(String imageUrl, String tradeName, String model, double prize) {
+    public City(String imageUrl, String tradeName, String model, double prize) {
         this.imageUrl = imageUrl;
         this.tradeName = tradeName;
         this.model = model;

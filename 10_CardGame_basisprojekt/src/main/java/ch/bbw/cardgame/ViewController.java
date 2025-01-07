@@ -16,125 +16,125 @@ import java.util.List;
  */
 @Controller
 public class ViewController {
-    List<Car> leftCarList = new ArrayList<>();
-    List<Car> rightCarList = new ArrayList<>();
-    Car leftCar = null;
-    Car rightCar = null;
+    List<City> leftCityList = new ArrayList<>();
+    List<City> rightCityList = new ArrayList<>();
+    City leftCity = null;
+    City rightCity = null;
 
     public ViewController() {
         setup();
     }
 
     private void setup(){
-        leftCarList.clear();
-        rightCarList.clear();
+        leftCityList.clear();
+        rightCityList.clear();
 
         //Aufwendiger Style
-        Car car1 = new Car("images/Auto.png", "Audi", "Flaschback 300", 50000.00 );
-        leftCarList.add(car1);
-        Car car2 = new Car("images/Auto.png", "Opel", "Manta SE", 20000.00 );
-        leftCarList.add(car2);
-        Car car3 = new Car("images/Auto.png", "VW", "Golf GL", 12000.00 );
-        leftCarList.add(car3);
+        City City1 = new City("images/city_img.jpg", "Audi", "Flaschback 300", 50000.00 );
+        leftCityList.add(City1);
+        City City2 = new City("images/city_img.jpg", "Opel", "Manta SE", 20000.00 );
+        leftCityList.add(City2);
+        City City3 = new City("images/city_img.jpg", "VW", "Golf GL", 12000.00 );
+        leftCityList.add(City3);
 
         //Objekt direkt erstellen
-        rightCarList.add(new Car("images/Auto.png", "Fiat", "500", 15000.00 ));
-        rightCarList.add(new Car("images/Auto.png", "Alfa Romeo", "Guilietta", 30000.00 ));
-        rightCarList.add(new Car("images/Auto.png", "Lancia", "Delta", 45000.00 ));
+        rightCityList.add(new City("images/city_img.jpg", "Fiat", "500", 15000.00 ));
+        rightCityList.add(new City("images/city_img.jpg", "Alfa Romeo", "Guilietta", 30000.00 ));
+        rightCityList.add(new City("images/city_img.jpg", "Lancia", "Delta", 45000.00 ));
     }
 
     @GetMapping("/")
     public String redirect() {
-        Car leftCar = null;
-        Car rightCar = null;
-        Car middleCar = null;
+        City leftCity = null;
+        City rightCity = null;
+        City middleCity = null;
         return "redirect:/cardGameView";
     }
 
     @GetMapping("/cardGameView")
     public String showView(Model model) {
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
     @PostMapping(value = "/cardGameView", params = {"showButton=showLeft"})
     public String showLeftCard(Model model) {
-        if(leftCarList.isEmpty()){
-            leftCar = null;
+        if(leftCityList.isEmpty()){
+            leftCity = null;
         }else{
-            leftCar = leftCarList.get(0);
+            leftCity = leftCityList.get(0);
         }
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
     @PostMapping(value = "/cardGameView", params = {"moveButton=moveToLeft"})
     public String moveCardToLeft(Model model) {
-        if(rightCarList.isEmpty()){
+        if(rightCityList.isEmpty()){
             //do nothing
         }else{
             //Verliererkarte hinzufügen
-            leftCarList.add(rightCarList.remove(0));
+            leftCityList.add(rightCityList.remove(0));
             //Siegerkarte nach hinten schieben
-            leftCarList.add(leftCarList.remove(0));
+            leftCityList.add(leftCityList.remove(0));
         }
-        leftCar = null;
-        rightCar = null;
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        leftCity = null;
+        rightCity = null;
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
     @PostMapping(value = "/cardGameView", params = {"showButton=showRight"})
     public String showRightCard(Model model) {
-        if(rightCarList.isEmpty()){
-            rightCar = null;
+        if(rightCityList.isEmpty()){
+            rightCity = null;
         }else{
-            rightCar = rightCarList.get(0);
+            rightCity = rightCityList.get(0);
         }
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
     @PostMapping(value = "/cardGameView", params = {"moveButton=moveToRight"})
     public String moveCardToRight(Model model) {
-        if (leftCarList.isEmpty()) {
+        if (leftCityList.isEmpty()) {
             //do nothing
         } else {
             //Verliererkarte hinzufügen
-            rightCarList.add(leftCarList.remove(0));
+            rightCityList.add(leftCityList.remove(0));
             //Siegerkarte nach hinten schieben
-            rightCarList.add(rightCarList.remove(0));
+            rightCityList.add(rightCityList.remove(0));
         }
-        leftCar = null;
-        rightCar = null;
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        leftCity = null;
+        rightCity = null;
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
     @PostMapping(value = "/cardGameView", params = {"showButton=reset"})
     public String resetView(Model model) {
         setup();
-        leftCar = null;
-        rightCar = null;
-        model.addAttribute("leftCar", leftCar);
-        model.addAttribute("rightCar", rightCar);
-        model.addAttribute("numberLeft", leftCarList.size());
-        model.addAttribute("numberRight", rightCarList.size());
+        leftCity = null;
+        rightCity = null;
+        model.addAttribute("leftCity", leftCity);
+        model.addAttribute("rightCity", rightCity);
+        model.addAttribute("numberLeft", leftCityList.size());
+        model.addAttribute("numberRight", rightCityList.size());
         return "cardGameForm";
     }
 
