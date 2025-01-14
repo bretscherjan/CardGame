@@ -18,12 +18,19 @@
 
     <form th:action="@{/cardGameView}" method="post">
         <div class="row justify-content-evenly">
+            <!-- Für Spieler 1 (links) -->
             <div class="col-4">
                 <h5>Spieler 1</h5>
-                <label th:text="'Noch ' + ${numberLeft}  + ' Karten im Deck'"></label>
-                <div class="mt-1 p-2 border" th:if="${leftCity == null}">
-                    <p>Leere Karte</p>
-                    <img class="img-fluid" src="images/city_img.jpg" alt="Stadt Bild">
+                <div th:if="${numberLeft == 0}" class="alert alert-danger">
+                    Du hast verloren!
+                </div>
+                <div th:if="${numberRight == 0}" class="alert alert-success">
+                    Du hast gewonnen!
+                </div>
+                <label th:if="${numberLeft > 0}" th:text="'Noch ' + ${numberLeft}  + ' Karten im Deck'"></label>
+                <div class="mt-1 p-2 border" th:if="${leftCity == null && numberLeft > 0}">
+                    <p>Verdeckte Karte</p>
+                    <img class="img-fluid" src="images/background.png" alt="Kartenrückseite">
                 </div>
                 <div class="mt-1 p-2 border" th:if="${leftCity != null}">
                     <img class="img-fluid" th:src="${leftCity.imageUrl}" alt="Stadt Bild">
@@ -35,7 +42,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Einwohner</th>
-                            <td th:text="${leftCity.inhabit}"></td>
+                            <td th:text="${leftCity.inhabitant}"></td>
                         </tr>
                         <tr>
                             <th scope="row">Fläche</th>
@@ -52,16 +59,23 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-outline-primary m-1" name="showButton" value="showLeft">show left</button>
-                <button type="submit" class="btn btn-outline-primary m-1" name="moveButton" value="moveToRight">move to right</button>
+                <button th:if="${numberLeft > 0}" type="submit" class="btn btn-outline-primary m-1" name="showButton" value="showLeft">show left</button>
+                <button th:if="${numberLeft > 0}" type="submit" class="btn btn-outline-primary m-1" name="moveButton" value="moveToRight">move to right</button>
             </div>
 
+            <!-- Für Spieler 2 (rechts) -->
             <div class="col-4">
                 <h5>Spieler 2</h5>
-                <label th:text="'Noch ' + ${numberRight}  + ' Karten im Deck'"></label>
-                <div class="mt-1 p-2 border" th:if="${rightCity == null}">
-                    <p>Leere Karte</p>
-                    <img class="img-fluid" src="images/city_img.jpg" alt="Stadt Bild">
+                <div th:if="${numberRight == 0}" class="alert alert-danger">
+                    Du hast verloren!
+                </div>
+                <div th:if="${numberLeft == 0}" class="alert alert-success">
+                    Du hast gewonnen!
+                </div>
+                <label th:if="${numberRight > 0}" th:text="'Noch ' + ${numberRight}  + ' Karten im Deck'"></label>
+                <div class="mt-1 p-2 border" th:if="${rightCity == null && numberRight > 0}">
+                    <p>Verdeckte Karte</p>
+                    <img class="img-fluid" src="images/background.png" alt="Kartenrückseite">
                 </div>
                 <div class="mt-1 p-2 border" th:if="${rightCity != null}">
                     <img class="img-fluid" th:src="${rightCity.imageUrl}" alt="Stadt Bild">
@@ -73,7 +87,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Einwohner</th>
-                            <td th:text="${rightCity.inhabit}"></td>
+                            <td th:text="${rightCity.inhabitant}"></td>
                         </tr>
                         <tr>
                             <th scope="row">Fläche</th>
@@ -90,8 +104,8 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-outline-primary m-1" name="showButton" value="showRight">show right</button>
-                <button type="submit" class="btn btn-outline-primary m-1" name="moveButton" value="moveToLeft">move to left</button>
+                <button th:if="${numberRight > 0}" type="submit" class="btn btn-outline-primary m-1" name="showButton" value="showRight">show right</button>
+                <button th:if="${numberRight > 0}" type="submit" class="btn btn-outline-primary m-1" name="moveButton" value="moveToLeft">move to left</button>
             </div>
         </div>
         <button type="submit" class="btn btn-outline-primary m-1" name="showButton" value="reset">Reset</button>
